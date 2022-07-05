@@ -39,7 +39,7 @@ def wait_untilelemwntLoads(driver, element, delay):
     try:
         WebDriverWait(driver, delay).until(
             EC.presence_of_element_located((By.ID, element)))
-        print(element + 'On Page is ready!')
+        print(element + ' On Page is ready!')
     except TimeoutException:
         print('Loading took too much time!')
 
@@ -57,5 +57,17 @@ element_LogIn.click()
 wait_untilelemwntLoads(driver, 'accept-cookies-button', 30)
 element_acceptcookies = driver.find_element(By.ID,'accept-cookies-button')
 element_acceptcookies.click()
+
+driver.get('https://app.flexera.com/orgs/28062/slo/Suite/Licenses/List/All')
+
+wait_untilelemwntLoads(driver, 'header-profile-button', 30)
+element_headerprofile = driver.find_element(By.ID,'header-profile-button')
+# element_headerprofile.click()
+driver.execute_script("arguments[0].click();", element_headerprofile)
+
+element_logoutbutton = driver.find_element(By.XPATH,"//button[text()='Log out']")
+driver.execute_script("arguments[0].click();", element_logoutbutton)
+
+wait_untilelemwntLoads(driver, 'okta-signin-username', 90)
 # wait_untilelemwntLoads(driver, 'fnms-iframe', 30)
 # driver.switch_to.frame('fnms-iframe')
