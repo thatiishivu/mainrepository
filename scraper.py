@@ -28,7 +28,7 @@ def get_driver():
     return driver
 
 
-urltohit_onreplit = 'https://sit.app.flexeratest.com/?fnms-host=https://SYS16-SERVER2.fnms.flexdev.com&?fnms-cookie-refresh=https://SYS16-SERVER2.fnms.flexdev.com/Suite/Login/CookieRefresher'
+urltohit_onreplit = 'https://app.flexera.com/suite'
 driver = get_driver()
 driver.get(urltohit_onreplit)
 delay = 3  # seconds
@@ -48,15 +48,14 @@ wait_untilelemwntLoads(driver, 'okta-signin-username', 3)
 
 element_UN = driver.find_element(By.ID, 'okta-signin-username')
 element_PWD = driver.find_element(By.ID, 'okta-signin-password')
-element_UN.send_keys('fnmpautouser0@thc.test')
+element_UN.send_keys('fnmpadministrator@uat.thc.test')
 
-element_PWD.send_keys('G0dz111a@2050$$')
+element_PWD.send_keys('J4x%mLk^v8lU13')
 element_LogIn = driver.find_element(By.ID, 'okta-signin-submit')
 element_LogIn.click()
 
 wait_untilelemwntLoads(driver, 'accept-cookies-button', 30)
-driver.get('https://app.flexeratest.com/orgs/40079/slo/Suite/MyPreferences')
-
-wait_untilelemwntLoads(driver, 'fnms-iframe', 30)
-driver.switch_to.frame('fnms-iframe')
-print(driver.title)
+element_acceptcookies = driver.find_element(By.ID,'accept-cookies-button')
+element_acceptcookies.click()
+# wait_untilelemwntLoads(driver, 'fnms-iframe', 30)
+# driver.switch_to.frame('fnms-iframe')
